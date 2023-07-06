@@ -23,7 +23,7 @@ function App() {
             <Route path="/past" element={<Past/>} />
             <Route path="/upcoming" element={<Upcoming/>} />
             <Route path="/stats" element={<Stats/>} />
-            <Route path="*" element={<h2>No existe página</h2>} />
+            <Route path="*" element={<h2>ERROR 404</h2>} />
           </Routes>
       </Router>
 
