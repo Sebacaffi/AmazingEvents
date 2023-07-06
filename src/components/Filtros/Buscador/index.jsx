@@ -8,7 +8,6 @@ function Buscardor(props){
         <>
             <div>
                 <label htmlFor="">
-                    Evento
                     <input type="text" onChange={(event)=> text = event.target.value} />
                 </label>
     
