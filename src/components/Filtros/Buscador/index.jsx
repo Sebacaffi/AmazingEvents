@@ -1,4 +1,6 @@
 import React from "react";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function Buscardor(props){
 
@@ -6,13 +8,18 @@ function Buscardor(props){
 
     return(
         <>
-            <div>
-                <label htmlFor="">
-                    <input type="text" onChange={(event)=> text = event.target.value} />
-                </label>
-    
-                <input onClick={()=>props.filtrarEventos(text)} type="button" value = "Buscar" />
-            </div>
+            {
+                <Form className="d-flex">
+                <Form.Control
+                    onChange={(event)=> text = event.target.value}
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                />
+                    <Button onClick={()=> props.filtrarEventos(text)} variant="outline-success">Search</Button>
+                </Form>
+            }
         </>
     )
 }

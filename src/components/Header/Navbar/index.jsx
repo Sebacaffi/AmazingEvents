@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 const Navegate = (props) => {
+
+    let text = ""
 
     return(
         <> 
@@ -22,21 +22,12 @@ const Navegate = (props) => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                            <Link className="nav-link" to={"/"}>Home</Link>
-                            <Link className="nav-link" to={"/past"}>Past</Link>
-                            <Link className="nav-link" to={"/upcoming"}>Upcoming</Link>
-                            <Link className="nav-link" to={"/stats"}>Stats</Link>
+                            <Link className="nav-link" to={"/"}>Eventos</Link>
+                            <Link className="nav-link" to={"/past"}>Eventos Pasados</Link>
+                            <Link className="nav-link" to={"/upcoming"}>Eventos Futuros</Link>
+                            <Link className="nav-link" to={"/stats"}>Estadisticas</Link>
                             <Link className="nav-link" to={"*"}></Link>
                     </Nav>
-                    {/* <Form className="d-flex">
-                        <Form.Control
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form> */}
                     </Navbar.Collapse>
                 </Container>
                 </Navbar>

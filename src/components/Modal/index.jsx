@@ -13,7 +13,7 @@ function ModalDetails(props) {
 
     return (
         <> 
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="warning" onClick={handleShow}>
                 Ver Detalles
             </Button>
 
@@ -28,7 +28,7 @@ function ModalDetails(props) {
                             <p><strong>Lugar: </strong>{evento.place}</p>
                             <p><strong>Categoría: </strong>{evento.category}</p>
                             <p><strong>Lugar: </strong>{evento.place}</p>
-                            <p><strong>Precio: $</strong>{evento.price}</p>
+                            <p><strong>Precio: </strong>${evento.price}</p>
                             <p><strong>Fecha: </strong>{evento.date}</p>
                             <p><strong>Capacidad: </strong>{evento.capacity}</p>
                             {evento.assistance ? <p><strong>Asistencia: </strong>{evento.assistance}</p>: <p><strong>Estimación: </strong>{evento.estimate}</p>}

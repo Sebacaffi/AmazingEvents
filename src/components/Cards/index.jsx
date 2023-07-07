@@ -7,8 +7,8 @@ const Cards = (props) =>{
     let eventos = props.eventos
 
     return(
-        <> 
-            <div className="container">
+        <>
+            <div>
                 <div className="row">
             { 
                 eventos.map((evento)=>{
