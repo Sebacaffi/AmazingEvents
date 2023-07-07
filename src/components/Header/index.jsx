@@ -1,7 +1,7 @@
 import React from "react";
 import Navegate from "./Navbar";
 
-const Header = (props) => {
+const Header = () => {
      return(
         <>  
             <Navegate />

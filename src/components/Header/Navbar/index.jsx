@@ -12,7 +12,7 @@ const Navegate = (props) => {
     return(
         <> 
             {
-                <Navbar bg="dark" expand="lg" className="bg-body-tertiary">
+                <Navbar bg="dark" expand="lg" className="navbar navbar-dark bg-dark">
                 <Container fluid>
                     <Navbar.Brand href="#">Amazing Events</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
@@ -28,7 +28,7 @@ const Navegate = (props) => {
                             <Link className="nav-link" to={"/stats"}>Stats</Link>
                             <Link className="nav-link" to={"*"}></Link>
                     </Nav>
-                    <Form className="d-flex">
+                    {/* <Form className="d-flex">
                         <Form.Control
                         type="search"
                         placeholder="Search"
@@ -36,7 +36,7 @@ const Navegate = (props) => {
                         aria-label="Search"
                         />
                         <Button variant="outline-success">Search</Button>
-                    </Form>
+                    </Form> */}
                     </Navbar.Collapse>
                 </Container>
                 </Navbar>
