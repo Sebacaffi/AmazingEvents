@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import Cards from "../components/Cards"
 import Buscador from "../components/Filtros/Buscador"
+import Checkbox from "../components/Filtros/CheckBox"
+import './style.css'
 import axios from "axios"
 
 const Past = () => {
@@ -33,8 +35,8 @@ const Past = () => {
     return(
         <>
             <center><h1>Eventos Pasados</h1></center>
-            <div className="row">
-                <Checkbox filtrarEventos={eventos}/>
+            <div className="row right">
+                <Checkbox filtrarEventos={eventoPasadoFiltrado}/>
                 <Buscador filtrarEventos={filtrarEventos}/>
             </div>
             <Cards eventos={eventoPasadoFiltrado}/>

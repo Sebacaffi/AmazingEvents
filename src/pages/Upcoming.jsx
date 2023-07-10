@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import Cards from "../components/Cards"
 import Buscador from "../components/Filtros/Buscador"
+import Checkbox from "../components/Filtros/CheckBox"
+import './style.css'
 import axios from "axios"
 
 const Upcoming = () => {
@@ -9,35 +11,35 @@ const Upcoming = () => {
 
     useEffect(() => {
         axios.get("https://mindhub-xj03.onrender.com/api/amazing")
-          .then((response) => {
+            .then((response) => {
 
-            let eventosFiltrados = response.data.events.filter((evento) => evento.date > response.data.currentDate)
+                let eventosFiltrados = response.data.events.filter((evento) => evento.date > response.data.currentDate)
 
-            setEventosFuturos(eventosFiltrados)
-            setEventoFuturoFiltrado(eventosFiltrados)
-          });
+                setEventosFuturos(eventosFiltrados)
+                setEventoFuturoFiltrado(eventosFiltrados)
+            });
     }, []);
 
     const [eventoFuturoFiltrado, setEventoFuturoFiltrado] = useState(eventosFuturos)
 
     const filtrarEventos = (text) => {
 
-        if(text != ""){
-            let eventoFuturoFiltradoFN = eventosFuturos.filter((evento)=> evento.name == text)
+        if (text != "") {
+            let eventoFuturoFiltradoFN = eventosFuturos.filter((evento) => evento.name == text)
             setEventoFuturoFiltrado(eventoFuturoFiltradoFN)
-        }else{
+        } else {
             setEventoFuturoFiltrado(eventosFuturos)
         }
     }
 
-    return(
+    return (
         <>
             <center><h1>Eventos Futuros</h1></center>
-            <div className="row">
-                <Checkbox filtrarEventos={eventos}/>
-                <Buscador filtrarEventos={filtrarEventos}/>
+            <div className="row right">
+                <Checkbox filtrarEventos={eventoFuturoFiltrado} />
+                <Buscador filtrarEventos={filtrarEventos} />
             </div>
-            <Cards eventos={eventoFuturoFiltrado}/>
+            <Cards eventos={eventoFuturoFiltrado} />
         </>
     )
 }

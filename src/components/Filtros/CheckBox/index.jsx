@@ -1,30 +1,46 @@
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react';
 
 const Checkbox = (props) => {
 
-    let eventos = props.filtrarEventos
+    const { filtrarEventos } = props;
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
-    let categorias = []
-    eventos.forEach((evento) => {
-         if (!categorias.includes(evento.category)) {
-             categorias.push(evento.category)
-         }
-    })
+    let categorias = [];
+    filtrarEventos.forEach((evento) => {
+        if (!categorias.includes(evento.category)) {
+            categorias.push(evento.category);
+        }
+    });
 
-    return(
+    const handleCheckboxChange = (categoria) => {
+        if (selectedCategories.includes(categoria)) {
+            setSelectedCategories(selectedCategories.filter((cat) => cat !== categoria));
+        } else {
+            setSelectedCategories([...selectedCategories, categoria]);
+        }
+    };
+
+    return (
         <>
-            {
-                categorias.map((categoria)=>{
-                    return <div key={categoria} className="form-check form-check-inline">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                        <label className="form-check-label">
+            <div>
+                {categorias.map((categoria) => (
+                    <div key={categoria} className="form-check form-check-inline check">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value={categoria}
+                            id={categoria}
+                            checked={selectedCategories.includes(categoria)}
+                            onChange={() => handleCheckboxChange(categoria)}
+                        />
+                        <label className="form-check-label" htmlFor={categoria}>
                             {categoria}
                         </label>
                     </div>
-                })
-            }
+                ))}
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default Checkbox
+export default Checkbox;

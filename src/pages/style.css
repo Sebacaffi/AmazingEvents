@@ -1,0 +1,13 @@
+.right {
+  position: relative;
+  right: -500px;
+  width: 900px;
+  padding: 15px;
+  max-width: 100%; /* Tamaño máximo deseado de la imagen */
+  height: auto; /* Para mantener la proporción de aspecto */
+}
+
+.details {
+  max-width: 100%; /* Tamaño máximo deseado de la imagen */
+  height: auto; /* Para mantener la proporción de aspecto */
+}

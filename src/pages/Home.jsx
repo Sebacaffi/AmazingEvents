@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import Cards from "../components/Cards"
 import Buscador from "../components/Filtros/Buscador"
-import axios from "axios"
 import Checkbox from "../components/Filtros/CheckBox"
+import './style.css'
+import axios from "axios"
 
 const Home = () => {
 
@@ -31,7 +32,7 @@ const Home = () => {
     return(
         <>  
             <center><h1>Todos los Eventos</h1></center>
-            <div className="row">
+            <div className="row right">
                 <Checkbox filtrarEventos={eventos}/>
                 <Buscador filtrarEventos={filtrarEventos}/>
             </div>
