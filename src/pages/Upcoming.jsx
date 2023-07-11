@@ -9,6 +9,10 @@ const Upcoming = () => {
 
     const [eventosFuturos, setEventosFuturos] = useState([])
 
+    const [eventoFuturoFiltrado, setEventoFuturoFiltrado] = useState(eventosFuturos)
+
+    let [categories, setCategories] = useState([])
+
     useEffect(() => {
         axios.get("https://mindhub-xj03.onrender.com/api/amazing")
             .then((response) => {
@@ -20,15 +24,19 @@ const Upcoming = () => {
             });
     }, []);
 
-    const [eventoFuturoFiltrado, setEventoFuturoFiltrado] = useState(eventosFuturos)
-
     const filtrarEventos = (text) => {
 
-        if (text != "") {
-            let eventoFuturoFiltradoFN = eventosFuturos.filter((evento) => evento.name == text)
+        if(text != "" && categories.length > 0){
+            let eventoFuturoFiltradoFN = eventosFuturos.filter((evento)=> evento.name.toLowerCase().includes(text.toLowerCase()) && categories.includes(evento.category))
             setEventoFuturoFiltrado(eventoFuturoFiltradoFN)
-        } else {
+        }else if (text == "" && categories.length == 0){
             setEventoFuturoFiltrado(eventosFuturos)
+        }else if(text == "" && categories.length > 0){
+            let eventoFuturoFiltradoFN = eventosFuturos.filter((evento)=> categories.includes(evento.category))
+            setEventoFuturoFiltrado(eventoFuturoFiltradoFN)
+        }else{
+            let eventoFuturoFiltradoFN = eventosFuturos.filter((evento)=> evento.name.toLowerCase().includes(text.toLowerCase()))
+            setEventoFuturoFiltrado(eventoFuturoFiltradoFN)
         }
     }
 
@@ -36,7 +44,7 @@ const Upcoming = () => {
         <>
             <center><h1>Eventos Futuros</h1></center>
             <div className="row right">
-                <Checkbox filtrarEventos={eventoFuturoFiltrado} />
+                <Checkbox filtrarEventos={eventosFuturos} setCategories={setCategories} />
                 <Buscador filtrarEventos={filtrarEventos} />
             </div>
             <Cards eventos={eventoFuturoFiltrado} />

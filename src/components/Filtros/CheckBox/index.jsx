@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Checkbox = (props) => {
 
     const { filtrarEventos } = props;
-    const [selectedCategories, setSelectedCategories] = useState([]);
+
+    let namesCategoriasChecked = []
 
     let categorias = [];
     filtrarEventos.forEach((evento) => {
@@ -12,12 +13,13 @@ const Checkbox = (props) => {
         }
     });
 
-    const handleCheckboxChange = (categoria) => {
-        if (selectedCategories.includes(categoria)) {
-            setSelectedCategories(selectedCategories.filter((cat) => cat !== categoria));
-        } else {
-            setSelectedCategories([...selectedCategories, categoria]);
-        }
+    const handleCheckboxChange = event => {
+        let checkboxesChecked = document.querySelectorAll("input[type=checkbox]:checked")
+        let arrCheckboxesChecked = Array.from(checkboxesChecked)
+
+        namesCategoriasChecked = arrCheckboxesChecked.map((checkbox) => checkbox.value)
+        
+        props.setCategories(namesCategoriasChecked)
     };
 
     return (
@@ -30,8 +32,7 @@ const Checkbox = (props) => {
                             type="checkbox"
                             value={categoria}
                             id={categoria}
-                            checked={selectedCategories.includes(categoria)}
-                            onChange={() => handleCheckboxChange(categoria)}
+                            onClick={handleCheckboxChange}
                         />
                         <label className="form-check-label" htmlFor={categoria}>
                             {categoria}
