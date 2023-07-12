@@ -8,6 +8,7 @@ import Upcoming from './pages/Upcoming'
 import Stats from './pages/Stats'
 import Details from './pages/Details'
 import Home from './pages/Home'
+import Error404 from './pages/Error404'
 
 import './App.css'
 
@@ -24,7 +25,7 @@ function App() {
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/stats" element={<Stats />} />
           <Route path='/details/:id' element={<Details />} />
-          <Route path="*" element={<h2>ERROR 404</h2>} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
 

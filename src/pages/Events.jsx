@@ -15,36 +15,35 @@ const Events = () => {
 
     useEffect(() => {
         axios.get("https://mindhub-xj03.onrender.com/api/amazing")
-          .then((response) => {
-            setEventos(response.data.events);
-            setEventoFiltrado(response.data.events)
-          });
+            .then((response) => {
+                setEventos(response.data.events);
+                setEventoFiltrado(response.data.events)
+            });
     }, []);
 
     const filtrarEventos = (text) => {
-
-        if(text != "" && categories.length > 0){
-            let eventosFiltrados = eventos.filter((evento)=> evento.name.toLowerCase().includes(text.toLowerCase()) && categories.includes(evento.category))
+        if (text != "" && categories.length > 0) {
+            let eventosFiltrados = eventos.filter((evento) => evento.name.toLowerCase().includes(text.toLowerCase()) && categories.includes(evento.category))
             setEventoFiltrado(eventosFiltrados)
-        }else if (text == "" && categories.length == 0){
+        } else if (text == "" && categories.length == 0) {
             setEventoFiltrado(eventos)
-        }else if(text == "" && categories.length > 0){
-            let eventosFiltrados = eventos.filter((evento)=> categories.includes(evento.category))
+        } else if (text == "" && categories.length > 0) {
+            let eventosFiltrados = eventos.filter((evento) => categories.includes(evento.category))
             setEventoFiltrado(eventosFiltrados)
-        }else{
-            let eventosFiltrados = eventos.filter((evento)=> evento.name.toLowerCase().includes(text.toLowerCase()))
+        } else {
+            let eventosFiltrados = eventos.filter((evento) => evento.name.toLowerCase().includes(text.toLowerCase()))
             setEventoFiltrado(eventosFiltrados)
         }
     }
 
-    return(
-        <>  
+    return (
+        <>
             <center><h1>Todos los Eventos</h1></center>
             <div className="row right">
                 <Checkbox filtrarEventos={eventos} setCategories={setCategories} />
-                <Buscador filtrarEventos={filtrarEventos}/>
+                <Buscador filtrarEventos={filtrarEventos} />
             </div>
-            <Cards eventos={eventoFiltrado}/>
+            <Cards eventos={eventoFiltrado} />
         </>
     )
 }
