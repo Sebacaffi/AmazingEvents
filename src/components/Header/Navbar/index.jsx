@@ -1,44 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 const Navegate = (props) => {
 
-    return(
-        <> 
+    let text = ""
+
+    return (
+        <>
             {
                 <Navbar bg="dark" expand="lg" className="navbar navbar-dark bg-dark">
-                <Container fluid>
-                    <Navbar.Brand href="#">Amazing Events</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
-                    <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
-                        navbarScroll
-                    >
-                            <Link className="nav-link" to={"/"}>Home</Link>
-                            <Link className="nav-link" to={"/past"}>Past</Link>
-                            <Link className="nav-link" to={"/upcoming"}>Upcoming</Link>
-                            <Link className="nav-link" to={"/stats"}>Stats</Link>
-                            <Link className="nav-link" to={"*"}></Link>
-                    </Nav>
-                    {/* <Form className="d-flex">
-                        <Form.Control
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form> */}
-                    </Navbar.Collapse>
-                </Container>
+                    <Container fluid>
+                        <Navbar.Brand href="#">Amazing Events</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        <Navbar.Collapse id="navbarScroll">
+                            <Nav
+                                className="me-auto my-2 my-lg-0"
+                                style={{ maxHeight: '100px' }}
+                                navbarScroll
+                            >
+                                <Link className="nav-link" to={"/"}>Inicio</Link>
+                                <Link className="nav-link" to={"/events"}>Eventos</Link>
+                                <Link className="nav-link" to={"/past"}>Eventos Pasados</Link>
+                                <Link className="nav-link" to={"/upcoming"}>Eventos Futuros</Link>
+                                <Link className="nav-link" to={"/stats"}>Estadisticas</Link>
+                                <Link className="nav-link" to={"*"}></Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
                 </Navbar>
             }
         </>

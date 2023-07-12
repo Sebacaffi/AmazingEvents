@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-function Buscardor(props){
+function Buscardor(props) {
 
-    let text = ""
+    let inputRef = useRef()
 
-    return(
+    return (
         <>
-            <div>
-                <label htmlFor="">
-                    <input type="text" onChange={(event)=> text = event.target.value} />
-                </label>
-    
-                <input onClick={()=>props.filtrarEventos(text)} type="button" value = "Buscar" />
-            </div>
+            {
+                <Form className="d-flex">
+                    <Form.Control
+                        type="search"
+                        placeholder="Search"
+                        className="me-2"
+                        aria-label="Search"
+                        ref={inputRef}
+                    />
+                    <Button onClick={() => props.filtrarEventos(inputRef.current.value)} variant="success">Search</Button>
+                </Form>
+            }
         </>
     )
 }
