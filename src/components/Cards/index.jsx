@@ -3,7 +3,6 @@ import ModalDetails from '../Modal';
 import { BsFillCalendar2DateFill, BsCashCoin, BsFillPinMapFill } from "react-icons/bs";
 import './style/style.css'
 
-
 const Cards = (props) => {
 
     let eventos = props.eventos

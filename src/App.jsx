@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import StateContext from './store/StateContext'
+import { useContext, useEffect } from 'react'
+import axios from 'axios'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -13,6 +16,20 @@ import Error404 from './pages/Error404'
 import './App.css'
 
 function App() {
+
+  let {loadEventos,loadEventosPasados,loadEventosFuturos} = useContext(StateContext)
+
+  useEffect(() => {
+    axios.get("https://mindhub-xj03.onrender.com/api/amazing")
+        .then((response) => {
+          let eventosPasados = response.data.events.filter((evento) => evento.date < response.data.currentDate)
+          let eventosFuturos = response.data.events.filter((evento) => evento.date > response.data.currentDate)
+          loadEventos(response.data.events)
+          loadEventosPasados(eventosPasados)
+          loadEventosFuturos(eventosFuturos)
+        });
+}, []);
+
 
   return (
     <>

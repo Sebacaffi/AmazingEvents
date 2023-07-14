@@ -1,19 +1,12 @@
 import { useParams } from "react-router-dom"
-import { useState, useEffect } from "react";
-import axios from "axios"
+import { useContext } from "react"
+import StateContext from '../store/StateContext'
 
 const Details = () => {
 
     const params = useParams()
 
-    const [eventos, setEventos] = useState([])
-
-    useEffect(() => {
-        axios.get("https://mindhub-xj03.onrender.com/api/amazing")
-            .then((response) => {
-                setEventos(response.data.events);
-            });
-    }, []);
+    let {eventos} = useContext(StateContext)
 
     let eventoFiltradoID = eventos.find((evento) => evento._id == params.id)
 

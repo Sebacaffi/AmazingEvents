@@ -1,28 +1,21 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import StateContext from '../store/StateContext'
 import Cards from "../components/Cards"
 import Buscador from "../components/Filtros/Buscador"
 import Checkbox from "../components/Filtros/CheckBox"
 import './style.css'
-import axios from "axios"
 
 const Upcoming = () => {
 
-    const [eventosFuturos, setEventosFuturos] = useState([])
+    let {eventosFuturos} = useContext(StateContext)
 
     const [eventoFuturoFiltrado, setEventoFuturoFiltrado] = useState(eventosFuturos)
 
     let [categories, setCategories] = useState([])
 
-    useEffect(() => {
-        axios.get("https://mindhub-xj03.onrender.com/api/amazing")
-            .then((response) => {
-
-                let eventosFiltrados = response.data.events.filter((evento) => evento.date > response.data.currentDate)
-
-                setEventosFuturos(eventosFiltrados)
-                setEventoFuturoFiltrado(eventosFiltrados)
-            });
-    }, []);
+    useEffect(()=>{
+        setEventoFuturoFiltrado(eventosFuturos)
+    },[eventosFuturos])
 
     const filtrarEventos = (text) => {
 
