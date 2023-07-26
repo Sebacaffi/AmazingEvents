@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import StateContext from './store/StateContext'
 import { useContext, useEffect } from 'react'
 import axios from 'axios'
@@ -12,40 +12,50 @@ import Stats from './pages/Stats'
 import Details from './pages/Details'
 import Home from './pages/Home'
 import Error404 from './pages/Error404'
+import Login from './pages/Login'
+import Logout from './pages/Logout'
+import Register from './pages/Register'
 
 import './App.css'
 
 function App() {
 
-  let {loadEventos,loadEventosPasados,loadEventosFuturos} = useContext(StateContext)
+  let navigate = useNavigate()
+
+  let { loadEventos, loadEventosPasados, loadEventosFuturos } = useContext(StateContext)
 
   useEffect(() => {
-    axios.get("https://mindhub-xj03.onrender.com/api/amazing")
-        .then((response) => {
-          let eventosPasados = response.data.events.filter((evento) => evento.date < response.data.currentDate)
-          let eventosFuturos = response.data.events.filter((evento) => evento.date > response.data.currentDate)
-          loadEventos(response.data.events)
-          loadEventosPasados(eventosPasados)
-          loadEventosFuturos(eventosFuturos)
-        });
-}, []);
-
+    
+    axios.defaults.withCredentials = true
+    axios.get("http://localhost:3000/api/eventos")
+      .then((response) => {
+        let currentDate = '2023-03-10'
+        let eventosPasados = response.data.filter((evento) => evento.date < currentDate)
+        let eventosFuturos = response.data.filter((evento) => evento.date > currentDate)
+        loadEventos(response.data)
+        loadEventosPasados(eventosPasados)
+        loadEventosFuturos(eventosFuturos)
+      })
+      .catch(error => {
+        navigate("/login")
+      });
+  }, []);
 
   return (
     <>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/past" element={<Past />} />
-          <Route path="/upcoming" element={<Upcoming />} />
-          <Route path="/stats" element={<Stats />} />
-          <Route path='/details/:id' element={<Details />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </Router>
-
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/past" element={<Past />} />
+        <Route path="/upcoming" element={<Upcoming />} />
+        <Route path="/stats" element={<Stats />} />
+        <Route path='/details/:id' element={<Details />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
       <Footer />
     </>
   )

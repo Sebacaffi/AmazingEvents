@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
 
-const Navegate = (props) => {
+const Navegate = () => {
 
-    let text = ""
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const logoutCustomer = () => {
+        localStorage.removeItem('isLoggedIn');
+        setIsLoggedIn(false);
+    };
+
+    useEffect(() => {
+        const loggedInFlag = localStorage.getItem('isLoggedIn');
+        setIsLoggedIn(loggedInFlag === 'true');
+    }, []);
 
     return (
         <>
@@ -27,7 +38,23 @@ const Navegate = (props) => {
                                 <Link className="nav-link" to={"/past"}>Eventos Pasados</Link>
                                 <Link className="nav-link" to={"/upcoming"}>Eventos Futuros</Link>
                                 <Link className="nav-link" to={"/stats"}>Estadisticas</Link>
-                                <Link className="nav-link" to={"*"}></Link>
+                            </Nav>
+                            <Nav className="ms-auto">
+                                {isLoggedIn && (
+                                    <Link className="nav-link" to={"/logout"}>
+                                        <Button variant="danger" onClick={logoutCustomer}>Cerrar Sesión</Button>
+                                    </Link>
+                                )}
+                                {!isLoggedIn && (
+                                    <Link className="nav-link" to={"/login"}>
+                                        <Button variant="success">Iniciar Sesión</Button>
+                                    </Link>
+                                )}
+                                {!isLoggedIn && (
+                                    <Link className="nav-link" to={"/register"}>
+                                        <Button variant="primary">Registrarse</Button>
+                                    </Link>
+                                )}
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -37,4 +64,4 @@ const Navegate = (props) => {
     )
 }
 
-export default Navegate
+export default Navegate;
